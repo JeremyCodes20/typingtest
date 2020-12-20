@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Typing Test</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <div id="d_title">
+            <h1>{{ title }}</h1>
+            <p>{{ subtitle }}</p>
+        </div>
+
+        <div id="game">
+            <ul>
+                <li v-for="word in words">
+                    {{ word }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
