@@ -25,6 +25,21 @@ const vapp = Vue.createApp({
                 }
             })
     },
+
+    computed: {
+        getNextWord: function () {
+            return this.words[0];
+        }
+    },
+
+    methods: {
+        checkTypingBox(event) {
+            if (event.currentTarget.value === this.words[0]) {
+                this.words.shift();
+                event.currentTarget.value = "";
+            }
+        }
+    },
 })
 
 const vm = vapp.mount('#app');

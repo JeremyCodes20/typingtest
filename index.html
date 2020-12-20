@@ -15,11 +15,9 @@
         </div>
 
         <div id="game">
-            <ul>
-                <li v-for="word in words">
-                    {{ word }}
-                </li>
-            </ul>
+            <h3>{{ getNextWord }}</h3>
+            <label for="typing_box">Type here!</label><br>
+            <input type="text" id="typing_box" @keyup="checkTypingBox($event)">
         </div>
     </div>
 </body>
