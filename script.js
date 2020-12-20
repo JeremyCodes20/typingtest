@@ -1,10 +1,13 @@
+// change to determine how many words are grabbed
+var word_count = 200;
+
 
 // Vue app
 const vapp = Vue.createApp({
     data() {
         return {
             title: "Typing test",
-            subtitle: "subtitle",
+            subtitle: "How fast can you type?",
 
             words: [],
         }
@@ -13,7 +16,7 @@ const vapp = Vue.createApp({
     created() {
         // grab a sufficiently large list of words from api
         // need to update this once I get my key
-        let words_url = 'https://random-word-api.herokuapp.com/word?number=200';
+        let words_url = `https://random-word-api.herokuapp.com/word?number=${word_count}`;
         fetch(words_url)
             .then(response => response.json())
             .then(json => {
@@ -28,7 +31,13 @@ const vapp = Vue.createApp({
 
     computed: {
         getNextWord: function () {
-            return this.words[0];
+            // make sure words is not empty
+            if (this.words.length !== 0) {
+                return this.words[0];
+            }
+            else {
+                return "Words list is empty";
+            }
         }
     },
 

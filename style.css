@@ -1,0 +1,40 @@
+.stuff-box {
+    font-family: 'helvetica neue', helvetica, sans-serif;
+    color: white;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 3px 10px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    background-color: dimgrey;
+}
+
+#d_title {
+    border-color: dodgerblue;
+}
+
+#game {
+    border-color: black;
+    color: black;
+    background-color: white;
+}
+
+#next_word {
+    text-transform: lowercase;
+}
+
+#typing_box {
+    padding: 0;
+    height: 50px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+    font-size: 32px;
+}
