@@ -1,6 +1,7 @@
 // change to determine how many words are grabbed
 var word_count = 200;
-
+// change to determine how long the game lasts
+var game_length = 10000;
 
 // Vue app
 const vapp = Vue.createApp({
@@ -8,6 +9,11 @@ const vapp = Vue.createApp({
         return {
             title: "Typing test",
             subtitle: "How fast can you type?",
+
+            not_playing: true,
+
+            curr_player: 0,
+            player_scores: [],
 
             words: [],
         }
@@ -44,9 +50,24 @@ const vapp = Vue.createApp({
     methods: {
         checkTypingBox(event) {
             if (event.currentTarget.value === this.words[0]) {
+                // remove the current word from the words list
                 this.words.shift();
+                // increment player score
+                this.player_scores[this.curr_player]++;
+                // reset the text box
                 event.currentTarget.value = "";
             }
+        },
+
+        restoreMenu() {
+            this.not_playing = true;
+            this.curr_player++;
+        },
+
+        playGame(event) {
+            this.player_scores.push(0);
+            this.not_playing = false;
+            window.setTimeout(this.restoreMenu, game_length);
         }
     },
 })
