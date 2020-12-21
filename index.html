@@ -14,14 +14,14 @@
             <p>{{ subtitle }}</p>
         </div>
 
-        <div v-if="not_playing">
+        <div v-if="display_menu">
             <div id="menu" class="stuff-box">
-                <h2>Play</h2>
                 <a href="#" class="play_button" @click="playGame">Play</a>
             </div>
 
-            <div v-for="(score, index) in player_scores" class="stuff-box">
-                <h5>Player {{ index }}: {{ score }}</h5>
+            <div class="stuff-box">
+                <h3>Leaderboard</h3>
+                <h5 v-for="(score, index) in player_scores">Player {{ index }}: {{ score }}</h5>
             </div>
         </div>
 
