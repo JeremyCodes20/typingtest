@@ -50,6 +50,10 @@ const vapp = Vue.createApp({
 
     methods: {
         checkTypingBox(event) {
+            // begin the countdown when the first key is pressed
+            if (!this.playing) {
+                window.setTimeout(this.restoreMenu, game_length);
+            }
             if (event.currentTarget.value === this.words[0]) {
                 // remove the current word from the words list
                 this.words.shift();
@@ -61,14 +65,16 @@ const vapp = Vue.createApp({
         },
 
         restoreMenu() {
+            // display the menu again increment the player index
             this.display_menu = true;
+            this.playing = false;
             this.curr_player++;
         },
 
         playGame() {
+            // display the typing box and add a new entry to the player_scores
             this.player_scores.push(0);
             this.display_menu = false;
-            window.setTimeout(this.restoreMenu, game_length);
         },
     },
 })
