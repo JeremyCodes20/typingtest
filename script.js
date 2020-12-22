@@ -17,6 +17,7 @@ const vapp = Vue.createApp({
             player_scores: [],
 
             words: [],
+            words_index: 0,
         }
     },
 
@@ -53,6 +54,7 @@ const vapp = Vue.createApp({
             // begin the countdown when the first key is pressed
             if (!this.playing) {
                 window.setTimeout(this.restoreMenu, game_length);
+                this.playing = true;
             }
             if (event.currentTarget.value === this.words[0]) {
                 // remove the current word from the words list
@@ -75,6 +77,10 @@ const vapp = Vue.createApp({
             // display the typing box and add a new entry to the player_scores
             this.player_scores.push(0);
             this.display_menu = false;
+        },
+
+        wordsPerMin(words) {
+            return words / (game_length / 60000);
         },
     },
 })

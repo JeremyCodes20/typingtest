@@ -21,7 +21,7 @@
 
             <div class="stuff-box">
                 <h3>Leaderboard</h3>
-                <h5 v-for="(score, index) in player_scores">Player {{ index }}: {{ score }}</h5>
+                <h5 v-for="(score, index) in player_scores">Player {{ index }}: {{ wordsPerMin(score) }} WPM</h5>
             </div>
         </div>
 
