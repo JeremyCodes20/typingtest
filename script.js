@@ -3,6 +3,16 @@ const word_count = 200;
 // change to determine how long the game lasts (milliseconds)
 const game_length = 20000;
 
+// function to shuffle array
+function shuffleArray(array) {
+    for (let i = (array.length - 1); i > 0; i--) {
+        const j = Math.floor(Math.random() * i)
+        const temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+    }
+}
+
 // Vue app
 const vapp = Vue.createApp({
     data() {
@@ -41,7 +51,7 @@ const vapp = Vue.createApp({
         getNextWord: function () {
             // make sure words is not empty
             if (this.words.length !== 0) {
-                return this.words[0];
+                return this.words[this.words_index];
             }
             else {
                 return "Words list is empty";
@@ -56,11 +66,11 @@ const vapp = Vue.createApp({
                 window.setTimeout(this.restoreMenu, game_length);
                 this.playing = true;
             }
-            if (event.currentTarget.value === this.words[0]) {
-                // remove the current word from the words list
-                this.words.shift();
+            if (event.currentTarget.value === this.words[this.words_index]) {
                 // increment player score
                 this.player_scores[this.curr_player]++;
+                // move to the next word;
+                ++this.words_index;
                 // reset the text box
                 event.currentTarget.value = "";
             }
@@ -71,9 +81,12 @@ const vapp = Vue.createApp({
             this.display_menu = true;
             this.playing = false;
             this.curr_player++;
+            this.words_index = 0;
         },
 
         playGame() {
+            // randomize the words list
+            shuffleArray(this.words);
             // display the typing box and add a new entry to the player_scores
             this.player_scores.push(0);
             this.display_menu = false;
