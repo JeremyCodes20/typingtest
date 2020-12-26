@@ -1,8 +1,3 @@
-// change to determine how many words are grabbed
-const word_count = 200;
-// change to determine how long the game lasts (milliseconds)
-const game_length = 20000;
-
 // function to shuffle array
 function shuffleArray(array) {
     for (let i = (array.length - 1); i > 0; i--) {
@@ -17,6 +12,11 @@ function shuffleArray(array) {
 const vapp = Vue.createApp({
     data() {
         return {
+            // change to determine how many words are grabbed
+            word_count: 200,
+            // change to determine how long the game lasts (milliseconds)
+            game_length: 20000,
+
             title: "Typing test",
             subtitle: "How fast can you type?",
 
@@ -56,14 +56,18 @@ const vapp = Vue.createApp({
             else {
                 return "Words list is empty";
             }
-        }
+        },
+
+        gameLenInSeconds: function () {
+            return this.game_length / 1000;
+        },
     },
 
     methods: {
         checkTypingBox(event) {
             // begin the countdown when the first key is pressed
             if (!this.playing) {
-                window.setTimeout(this.restoreMenu, game_length);
+                window.setTimeout(this.restoreMenu, this.game_length);
                 this.playing = true;
             }
             if (event.currentTarget.value === this.words[this.words_index]) {
@@ -93,7 +97,7 @@ const vapp = Vue.createApp({
         },
 
         wordsPerMin(words) {
-            return words / (game_length / 60000);
+            return words / (this.game_length / 60000);
         },
     },
 })
