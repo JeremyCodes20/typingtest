@@ -34,7 +34,7 @@ const vapp = Vue.createApp({
     created() {
         // grab a sufficiently large list of words from api
         // need to update this once I get my key
-        let words_url = `https://random-word-api.herokuapp.com/word?number=${word_count}`;
+        let words_url = `https://random-word-api.herokuapp.com/word?number=${this.word_count}`;
         fetch(words_url)
             .then(response => response.json())
             .then(json => {
